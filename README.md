@@ -1,2 +1,2 @@
 # Maze-Explorer
-This project was developed for the Introduction to Artificial Intelligence course, with the goal of creating a maze explorer that uses different search techniques and logical agents to demonstrate its strategies and performance.
+This project, developed for the Introduction to Artificial Intelligence course, aims to present a maze-exploring model that uses different search methods to explore the environment. The proposal seeks to demonstrate, in a practical and comparative way, the differences between various search techniques and logical agents, highlighting their strategies, performance, and applications in the autonomous decision-making process.
