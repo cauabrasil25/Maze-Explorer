@@ -3,17 +3,19 @@ This project, developed for the Introduction to Artificial Intelligence course, 
 
 ### 🧩 Maze Model
 
-###########
-#P...E....#
-#.#.#.###.#
-#.#.#...#.#
-#.#.###.#.#
-#...#T#...#
-###.#.#.####
-#...#.#...#
-#.###.#.#.#
-#.....I...#
-########X##
+<pre style="font-size:16px; line-height:1.2em; font-family: monospace;">
+<span style="color:gray;">###########</span>
+<span style="color:gray;">#</span><span style="color:lime;">P</span>...<span style="color:gold;">E</span>....<span style="color:gray;">#</span>
+<span style="color:gray;">#.#.#.###.#</span>
+<span style="color:gray;">#.#.#...#.#</span>
+<span style="color:gray;">#.#.###.#.#</span>
+<span style="color:gray;">#...#</span><span style="color:red;">T</span><span style="color:gray;">#...#</span>
+<span style="color:gray;">###.#.#.####</span>
+<span style="color:gray;">#...#.#...#</span>
+<span style="color:gray;">#.###.#.#.#</span>
+<span style="color:gray;">#.....</span><span style="color:crimson;">I</span><span style="color:gray;">...#</span>
+<span style="color:gray;">########</span><span style="color:deepskyblue;">X</span><span style="color:gray;">##</span>
+</pre>
 
 
 ### 🗝️ Symbols
