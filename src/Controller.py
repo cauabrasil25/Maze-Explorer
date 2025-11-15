@@ -8,12 +8,13 @@ from Player import Player
 class State(Enum):
     """Possible states."""
     INIT = 0
-    MAIN_MENU = 1
-    MAIN_GAME = 2
-    VIEW_SCORES = 3
-    SET_ALGORITHM = 4
-    EXIT = 5
-    END = 6
+    WELCOME_SCREEN = 1
+    MAIN_MENU = 2
+    MAIN_GAME = 3   
+    VIEW_SCORES = 4
+    SET_ALGORITHM = 5
+    EXIT = 6
+    END = 7
 
 
 class Controller:
@@ -22,28 +23,30 @@ class Controller:
     def __init__(self):
         # Atributo `estate` guarda um membro de `Estate`.
         # Ex.: `self.estate = Estate.INIT`
-        self.estate = State.INIT
+        self.state = State.INIT
         self.player = Player()
         self.display = Display()
         self.input = Input()
         self.running = True
 
-    def setEstate(self, state):
+    def setState(self, state):
         """Set new state for controller."""
-        self.estate = state
+        self.state = state
 
-    def getEstate(self):
+    def getState(self):
         """Get current state of controller."""
-        return self.estate
+        return self.state
     
-    def input(self, estate):
-        """Handle input based on current estate."""
-        self.input.MainswitchInput(estate)
+    def input(self, state):
+        """Handle input based on current state."""
+        self.input.MainswitchInput(state)
 
-    def display(self, estate, player):
-        """Handle display based on current estate."""
-        self.display.MainswitchDisplay(estate, player)
+    def display(self, state, player):
+        """Handle display based on current state."""
+        self.display.MainswitchDisplay(state, player)
 
     def update(self):
         """Update controller state based on current estate."""
-        pass  # Implement state update logic here
+        match self.state:
+            case State.INIT:
+                pass  

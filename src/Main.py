@@ -6,8 +6,8 @@ from src.Controller import Controller
 controller = Controller()
 
 while controller.running:
-    controller.display.MainswitchDisplay(controller.getEstate(), controller.player)
     controller.input(controller.getEstate())
     controller.update()
+    controller.display.MainswitchDisplay(controller.getEstate(), controller.player)
 
 controller.display.ShowEndScreen()
