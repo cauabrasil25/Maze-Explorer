@@ -10,7 +10,7 @@ This project, developed for the Introduction to Artificial Intelligence course, 
 <span style="color:gray;">#.#.#...#.#</span>
 <span style="color:gray;">#.#.###.#.#</span>
 <span style="color:gray;">#...#</span><span style="color:red;">T</span><span style="color:gray;">#...#</span>
-<span style="color:gray;">###.#.#.####</span>
+<span style="color:gray;">###.#.#.###</span>
 <span style="color:gray;">#...#.#...#</span>
 <span style="color:gray;">#.###.#.#.#</span>
 <span style="color:gray;">#.....</span><span style="color:crimson;">I</span><span style="color:gray;">...#</span>
