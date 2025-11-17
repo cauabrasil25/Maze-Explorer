@@ -26,6 +26,6 @@ This project, developed for the Introduction to Artificial Intelligence course, 
 | `P`      | Player (initial point) |
 | `X`      | Finish (goal)          |
 | `T`      | Trap                   |
-| `I`      | Enemy                  |
-| `E`      | Point / Item to colect |
+| `E`      | Enemy                  |
+| `I`      | Point / Item to colect |
 | `.`      | Empty space / way      |
