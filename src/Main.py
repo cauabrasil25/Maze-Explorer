@@ -1,13 +1,21 @@
 import sys
-from src.Player import Player
-from src.Display import Display
 from src.Controller import Controller
 
-controller = Controller()
 
-while controller.running:
-    controller.input(controller.getEstate())
-    controller.update()
-    controller.display.MainswitchDisplay(controller.getEstate(), controller.player)
+def main():
+    controller = Controller()
 
-controller.display.ShowEndScreen()
+    while controller.running:
+        controller.handle_display()
+        controller.handle_input()
+        controller.update()
+
+    controller.handle_display()
+
+
+if __name__ == '__main__':
+    try:
+        main()
+    except KeyboardInterrupt:
+        print('\nInterrompido pelo usuário. Saindo.')
+        sys.exit(0)

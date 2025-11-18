@@ -6,6 +6,7 @@ class Maze:
         
         """Initialize maze with default parameters."""
         self.enemys = []
+        self.traps = []
         self.itens = []
         self.walls = []
         self.emptys = []
@@ -90,7 +91,7 @@ class Maze:
                 if ch == '#':
                     self.add_wall(pos)
                 elif ch == 'P':
-                    self.set_player(pos)
+                    self.set_playerPosition(pos)
                     self.set_start(pos)
                 elif ch == 'E':
                     self.add_enemy(pos)

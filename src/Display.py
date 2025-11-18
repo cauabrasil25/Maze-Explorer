@@ -1,24 +1,14 @@
 class Display:
     """Print menus and player info to console."""
-
-    def MainswitchDisplay(estate, player):
-        switcher = {
-            'INIT': Display.ShowStartScreen,
-            'MAIN_MENU': Display.ShowMenu,
-            'SET_ALGORITHM': lambda: Display.ShowAlgorithms(player),
-            'EXIT': Display.ShowExitConfirmation,
-            'VIEW_SCORES': lambda: Display.ShowScores(player)
-        }
-        func = switcher.get(estate.name, lambda: None)
-        func()
+    # Dispatcher moved to Controller. Keep display helpers below.
     
-    def ShowStartScreen():
+    def showStartScreen():
         """Show start screen."""
         print("===========================================")
         print("        Welcome to Maze Explorer!          ")
         print("===========================================")
     
-    def ShowMenu():
+    def showMenu():
         """Show main menu."""
         print("=---------------- Main Menu ----------------=")
         print("1. Start Maze Game")
@@ -27,7 +17,7 @@ class Display:
         print("4. Exit")
         print("=-------------------------------------------=")
 
-    def ShowAlgorithms(player):
+    def showAlgorithms(player):
         """Show algorithm menu and active algorithm."""
         print("=----------- Select Algorithm -------------=")
         print("1. BFS")
@@ -39,7 +29,7 @@ class Display:
         print("Active Algorithm: " + player.get_algorithm())
         print("=-------------------------------------------=")
 
-    def ShowScores(player):
+    def showScores(player):
         """Show player's name and scores."""
         print("=----------------- Scores ------------------=")
         print(f"Player: {player.get_name()}")
@@ -47,11 +37,11 @@ class Display:
             print(f"{algorithm}: {score}")
         print("=-------------------------------------------=")
 
-    def ShowExitConfirmation():
+    def showExitConfirmation():
         """Show exit confirmation prompt."""
         print("Are you sure you want to exit? (y/n)")
 
-    def ShowEndScreen():
+    def showEndScreen():
         """Show end screen."""
         print("===========================================")
         print("         Thank you for playing!            ")
