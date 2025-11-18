@@ -7,6 +7,7 @@ class Display:
         print("===========================================")
         print("        Welcome to Maze Explorer!          ")
         print("===========================================")
+        print("Press Enter to continue...", end='')
     
     def showMenu():
         """Show main menu."""
@@ -16,6 +17,7 @@ class Display:
         print("3. Set Algorithm")
         print("4. Exit")
         print("=-------------------------------------------=")
+        print("Select an option (1-4): ", end='')
 
     def showAlgorithms(player):
         """Show algorithm menu and active algorithm."""
@@ -28,11 +30,11 @@ class Display:
         print("6. Back to Main Menu")
         print("Active Algorithm: " + player.get_algorithm())
         print("=-------------------------------------------=")
+        print("Select an algorithm (1-6): ", end='')
 
     def showScores(player):
-        """Show player's name and scores."""
+        """Show player's scores."""
         print("=----------------- Scores ------------------=")
-        print(f"Player: {player.get_name()}")
         for algorithm, score in player.score:
             print(f"{algorithm}: {score}")
         print("=-------------------------------------------=")

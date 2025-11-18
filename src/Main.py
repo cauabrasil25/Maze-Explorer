@@ -10,8 +10,6 @@ def main():
         controller.handle_input()
         controller.update()
 
-    controller.handle_display()
-
 
 if __name__ == '__main__':
     try:

@@ -19,26 +19,26 @@ class Input:
         next, but most callers will simply ignore the content and
         proceed.
         """
-        choice = input("Press Enter to continue (or type anything): ")
+        choice = input()
         return choice
     
     def mainMenuInput():
         """Get user input for main menu."""
-        choice = input("Select an option (1-4): ")
+        choice = input()
         return choice
     
     def algorithmMenuInput():
         """Get user input for algorithm menu."""
-        choice = input("Select an algorithm (1-6): ")
+        choice = input()
         return choice
     
     def exitConfirmationInput():
         """Get user input for exit confirmation."""
-        choice = input("Are you sure you want to exit? (y/n): ")
+        choice = input()
         return choice
     
     def showScoresInput():
         """Wait for user to press Enter to return to main menu."""
-        input("Press Enter to return to the main menu...")
+        input()
         return
     

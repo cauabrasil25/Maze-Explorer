@@ -31,8 +31,6 @@ class Controller:
             print('\033c', end='')
 
     def __init__(self):
-        # Atributo `State` guarda um membro de `State`.
-        # Ex.: `self.state = State.INIT`
         self.state = State.INIT
         self.player = Player()
         # keep references to helper modules/classes
@@ -40,6 +38,13 @@ class Controller:
         self.input_obj = Input
         self.running = True
         self.maze = Maze()
+        # Keep flags for navigation on input
+        self.toExit = False
+        self.toAlgorithmMenu = False
+        self.toScoresMenu = False
+        self.toMainMenu = False
+        self.toMainGame = False
+        self.toEnd = False
 
     def setState(self, state):
         """Set new state for controller."""
@@ -56,38 +61,44 @@ class Controller:
             case State.INIT:
                 return None
             case State.WELCOME_SCREEN:
+                # accept any input but don't change state here
                 choice = self.input_obj.welcomeScreenInput()
-                return None
+                return choice
             case State.MAIN_MENU:
                 choice = self.input_obj.mainMenuInput()
+                # record requested action; do not change state here
                 if choice == '1':
-                    self.setState(State.MAIN_GAME)
+                    self.toMainGame = True
                 elif choice == '2':
-                    self.setState(State.VIEW_SCORES)
+                    self.toScoresMenu = True
                 elif choice == '3':
-                    self.setState(State.SET_ALGORITHM)
+                    self.toAlgorithmMenu = True
                 elif choice == '4':
-                    self.setState(State.EXIT)
+                    self.toExit = True
+                else:
+                    print("Invalid choice. Please select a valid option.")
                 return choice
             case State.SET_ALGORITHM:
                 choice = self.input_obj.algorithmMenuInput()
                 mapping = {'1': 'BFS', '2': 'DFS', '3': 'A*', '4': 'Minimax', '5': 'Hillclimbing'}
                 if choice in mapping:
                     self.player.set_algorithm(mapping[choice])
-                # any selection returns to main menu
-                self.setState(State.MAIN_MENU)
+                else:
+                    print("Invalid choice. Please select a valid option.")
+                self.toMainMenu = True
                 return choice
             case State.VIEW_SCORES:
+                # wait for Enter and then request return to menu
                 self.input_obj.showScoresInput()
-                self.setState(State.MAIN_MENU)
+                self.toMainMenu = True
                 return None
             case State.EXIT:
                 choice = self.input_obj.exitConfirmationInput()
-                if isinstance(choice, str) and choice.lower().startswith('y'):
-                    self.setState(State.END)
-                    self.running = False
+                # defer exit decision to update()
+                if choice.lower() == 'y':
+                    self.toEnd = True
                 else:
-                    self.setState(State.MAIN_MENU)
+                    self.toMainGame = True
                 return choice
             case State.MAIN_GAME:
                 # gameplay input handled elsewhere; we simulate no-input here
@@ -119,22 +130,52 @@ class Controller:
     def update(self):
         """Update controller state based on current state.
 
-        This method handles transitions that are not directly caused by
-        user input (e.g., initialization).
+        This method handles transitions.
         """
+        # First handle automatic transitions
         match self.state:
             case State.INIT:
                 self.maze.readMaze()
+                # stay in WELCOME_SCREEN until user continues
                 self.setState(State.WELCOME_SCREEN)
                 self.clear_screen()
             case State.WELCOME_SCREEN:
-                # after showing welcome, move to main menu
                 self.setState(State.MAIN_MENU)
                 self.clear_screen()
+            case State.MAIN_MENU:
+                if self.toAlgorithmMenu:
+                    self.setState(State.SET_ALGORITHM)
+                    self.clear_screen()
+                    self.toAlgorithmMenu = False
+                elif self.toScoresMenu:
+                    self.setState(State.VIEW_SCORES)
+                    self.clear_screen()
+                    self.toScoresMenu = False
+                elif self.toExit:
+                    self.setState(State.EXIT)
+                    self.clear_screen()
+                    self.toExit = False
+                elif self.toMainGame:
+                    self.setState(State.MAIN_GAME)
+                    self.clear_screen()
+                    self.toMainGame = False
             case State.MAIN_GAME:
                 # simulate a finished run: give player a score and return to menu
                 self.player.set_score(self.player.get_score(self.player.get_algorithm()) + 10, self.player.get_algorithm())
                 self.setState(State.MAIN_MENU)
                 self.clear_screen()
-            case _:
-                pass
+            case State.VIEW_SCORES:
+                self.setState(State.MAIN_MENU)
+                self.clear_screen()
+            case State.SET_ALGORITHM:
+                self.setState(State.MAIN_MENU)
+                self.clear_screen() 
+            case State.EXIT:
+                if self.toEnd:
+                    self.setState(State.END)
+                    self.clear_screen()
+                    self.running = False
+                else:
+                    self.setState(State.MAIN_MENU)
+                    self.clear_screen()
+                    self.toEnd = False
