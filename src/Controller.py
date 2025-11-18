@@ -1,5 +1,7 @@
 from enum import Enum
 
+import os
+
 from src.Display import Display
 from src.Player import Player
 from src.Input import Input
@@ -19,6 +21,14 @@ class State(Enum):
 
 class Controller:
     """Controller placeholder: implement game flow here."""
+
+    def clear_screen(self):
+        """Clear the terminal in a cross-platform way."""
+        try:
+            os.system('cls' if os.name == 'nt' else 'clear')
+        except Exception:
+            # fallback to ANSI sequence (may not work on all consoles)
+            print('\033c', end='')
 
     def __init__(self):
         # Atributo `State` guarda um membro de `State`.
@@ -46,7 +56,7 @@ class Controller:
             case State.INIT:
                 return None
             case State.WELCOME_SCREEN:
-                # no input expected; proceed
+                choice = self.input_obj.welcomeScreenInput()
                 return None
             case State.MAIN_MENU:
                 choice = self.input_obj.mainMenuInput()
@@ -89,7 +99,7 @@ class Controller:
         # call Display functions (Display class methods)
         match st:
             case State.INIT:
-                self.display_obj.showStartScreen()
+                return None
             case State.WELCOME_SCREEN:
                 self.display_obj.showStartScreen()
             case State.MAIN_MENU:
@@ -116,12 +126,15 @@ class Controller:
             case State.INIT:
                 self.maze.readMaze()
                 self.setState(State.WELCOME_SCREEN)
+                self.clear_screen()
             case State.WELCOME_SCREEN:
                 # after showing welcome, move to main menu
                 self.setState(State.MAIN_MENU)
+                self.clear_screen()
             case State.MAIN_GAME:
                 # simulate a finished run: give player a score and return to menu
                 self.player.set_score(self.player.get_score(self.player.get_algorithm()) + 10, self.player.get_algorithm())
                 self.setState(State.MAIN_MENU)
+                self.clear_screen()
             case _:
                 pass
