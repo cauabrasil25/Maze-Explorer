@@ -1,64 +1,57 @@
-# Maze-Explorer
-This project, developed for the Introduction to Artificial Intelligence course, aims to present a maze-exploring model that uses different search methods to explore the environment. The proposal seeks[...] 
+# Maze Explorer
 
-### 🧩 Maze Model
+**Disciplina:** Introdução à Inteligência Artificial  
+**Semestre:** 2025.2  
+**Professor:** André Fonseca  
+**Turma:** T03
 
-<pre style="font-size:16px; line-height:1.2em; font-family: monospace;">
-<span style="color:gray;">###########</span>
-<span style="color:gray;">#</span><span style="color:lime;">P</span>...<span style="color:gold;">E</span>....<span style="color:gray;">#</span>
-<span style="color:gray;">#.#.#.###.#</span>
-<span style="color:gray;">#.#.#...#.#</span>
-<span style="color:gray;">#.#.###.#.#</span>
-<span style="color:gray;">#...#</span><span style="color:red;">T</span><span style="color:gray;">#...#</span>
-<span style="color:gray;">###.#.#.###</span>
-<span style="color:gray;">#...#.#...#</span>
-<span style="color:gray;">#.###.#.#.#</span>
-<span style="color:gray;">#.....</span><span style="color:crimson;">I</span><span style="color:gray;">...#</span>
-<span style="color:gray;">########</span><span style="color:deepskyblue;">X</span><span style="color:gray;">##</span>
-</pre>
+## Integrantes do Grupo
+* Cauã Rodrigues Brasil (20230048138)
+* Gislayne Ellen Da Silva Soares (20230042850)
+* Maria Vitoria Bruna Guedes Fernandes (20230069503)
 
+## Descrição do Projeto
+Este projeto foi desenvolvido para matéria de Introdução à Inteligência Artificial, com o objetivo de criar um explorador de labirintos que utilize diferentes técnicas de busca e agentes lógicos para demonstrar suas estratégias e desempenho.
 
-### 🗝️ Symbols
+## Guia de Instalação e Execução
 
-| Símbolo | Significado            |
-|:--------:|------------------------|
-| `#`      | Wall                   |
-| `P`      | Player (initial point) |
-| `X`      | Finish (goal)          |
-| `T`      | Trap                   |
-| `E`      | Enemy                  |
-| `I`      | Point / Item to colect |
-| `.`      | Empty space / way      |
+### 1. Instalação das Dependências
+Certifique-se de ter o **Python 3.x** instalado e clone o repositório:
 
-## Requirements and How to run Main
+```bash
+# Clone o repositório
+git clone https://github.com/cauabrasil25/Maze-Explorer.git
 
-Requirements
-- Python 3.8 or newer (recommended).
-- pip (Python package manager).
-- (Optional) virtual environment (venv or virtualenv) to isolate dependencies.
+# Entre na pasta do projeto
+cd Maze-Explorer
 
-Installation (optional)
-1. Clone the repository and change to the project folder:
-   - git clone https://github.com/cauabrasil25/Maze-Explorer.git
-   - cd Maze-Explorer
-2. Create and activate a virtual environment:
-   - Linux / macOS:
-     - python3 -m venv .venv
-     - source .venv/bin/activate
-   - Windows (PowerShell):
-     - python -m venv .venv
-     - .\.venv\Scripts\Activate.ps1
-3. If a requirements.txt file exists, install dependencies:
-   - pip install -r requirements.txt
+# Instale as dependências
+pip install -r requirements.txt
+````
 
-How to run the Main
-- From the repository root run:
-  - python3 src/Main.py
-  - On Windows you can also use: py -3 src/Main.py
-- If you encounter import errors, run as a module from the repo root:
-  - python -m src.Main
+### 2. Como Executar
 
-Notes
-- Make sure you run the command from the project root so that relative imports work correctly.
-- If a missing package error occurs, install the missing package with pip or check for a requirements.txt file.
-- Using a virtual environment is recommended for development to avoid global package conflicts.
+Execute o comando abaixo no terminal para iniciar o executável:
+
+```bash
+# Exemplo para Python3
+python3 src/Main.py
+
+# Se encotrar erros de import execute esse
+python -m src.Main
+```
+
+## Estrutura dos Arquivos
+
+  * `src/`: Código-fonte da aplicação.
+  * `src/algorithms`: Código com os algoritmos utilizados.
+  * `resource/`: Arquivo txt com o labirinto a ser explorado.
+  * `presentation/` Apresentação e slide do Pitch.
+
+## Resultados e Demonstração
+
+[Adicione prints da aplicação em execução ou gráficos com os resultados do modelo/agente. Se for uma aplicação Web, coloque um print da interface.]
+
+## Referências
+
+  * https://github.com/cauabrasil25/hangman-project.git (Modelo utilizado para a organição das classes e game loop)
