@@ -33,10 +33,39 @@ class Display:
         print("Select an algorithm (1-6): ", end='')
 
     def showScores(player):
-        """Show player's scores."""
+        """Show player's metrics for each algorithm.
+
+        Expects `player` to expose `metrics` (dict) or
+        `get_all_metrics(algorithm)`.
+        """
         print("=----------------- Scores ------------------=")
-        for algorithm, score in player.score:
-            print(f"{algorithm}: {score}")
+        metrics_dict = getattr(player, 'metrics', None)
+        if metrics_dict is None:
+            # fallback: try get_all_metrics method
+            try:
+                algos = []
+                # attempt to discover known algorithms by probing
+                for name in ['BFS', 'DFS', 'A*', 'Minimax', 'Hillclimbing']:
+                    m = player.get_all_metrics(name)
+                    if m:
+                        algos.append((name, m))
+            except Exception:
+                algos = []
+        else:
+            algos = list(metrics_dict.items())
+
+        if not algos:
+            print("No metrics available.")
+        else:
+            for algorithm, m in algos:
+                print(f"{algorithm}:")
+                if not m:
+                    print("  (no metrics)")
+                    continue
+                for k, v in m.items():
+                    val = v if v is not None else "-"
+                    print(f"  {k}: {val}")
+
         print("=-------------------------------------------=")
 
     def showExitConfirmation():
