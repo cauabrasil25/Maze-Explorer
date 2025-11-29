@@ -42,3 +42,7 @@ class Input:
         input()
         return
     
+    def GameScreenInput():
+        """Wait for user to press Enter to continue from game screen."""
+        input()
+        return

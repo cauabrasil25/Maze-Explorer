@@ -1,11 +1,18 @@
 from enum import Enum
 
 import os
+from unittest import case
 
 from src.Display import Display
 from src.Player import Player
 from src.Input import Input
 from src.Maze import Maze
+from src.algorithms.Bfs import Bfs
+#from src.algorithms.Dfs import Dfs
+#from src.algorithms.A import A
+#from src.algorithms.Minimax import Minimax
+
+
 
 class State(Enum):
     """Possible states."""
@@ -31,6 +38,7 @@ class Controller:
             print('\033c', end='')
 
     def __init__(self):
+        self.path = []
         self.state = State.INIT
         self.player = Player()
         # keep references to helper modules/classes
@@ -101,7 +109,8 @@ class Controller:
                     self.toMainGame = True
                 return choice
             case State.MAIN_GAME:
-                # gameplay input handled elsewhere; we simulate no-input here
+                self.input_obj.GameScreenInput()
+                self.toMainMenu = True
                 return None
 
     def handle_display(self):
@@ -124,8 +133,7 @@ class Controller:
             case State.END:
                 self.display_obj.showEndScreen()
             case State.MAIN_GAME:
-                # could show game screen; placeholder
-                print('Game running... (simulated)')
+                self.display_obj.showGameScreen(self.path, self.maze)
 
     def update(self):
         """Update controller state based on current state.
@@ -161,7 +169,19 @@ class Controller:
                     self.toMainGame = False
             case State.MAIN_GAME:
                 # simulate a finished run: give player a score and return to menu
-                self.player.set_score(self.player.get_score(self.player.get_algorithm()) + 10, self.player.get_algorithm())
+                match self.player.get_algorithm():
+                    case 'BFS':
+                        bfs = Bfs()
+                        self.path, metrics = bfs.bfs_search(self.maze)
+                        self.player.set_metrics('BFS', **metrics)
+                    case 'DFS':
+                        self.player.set_score(self.player.get_score('DFS') + 10, 'DFS')
+                    case 'A*':
+                        self.player.set_score(self.player.get_score('A*') + 10, 'A*')
+                    case 'Minimax':
+                        self.player.set_score(self.player.get_score('Minimax') + 10, 'Minimax')
+                    case 'Hillclimbing':
+                        self.player.set_score(self.player.get_score('Hillclimbing') + 10, 'Hillclimbing')
                 self.setState(State.MAIN_MENU)
                 self.clear_screen()
             case State.VIEW_SCORES:
