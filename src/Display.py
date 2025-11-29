@@ -67,7 +67,30 @@ class Display:
                     print("  (no metrics)")
                     continue
                 for k, v in m.items():
-                    val = v if v is not None else "-"
+                    if v is None:
+                        val = "-"
+                    else:
+                        # format numeric metrics more readably
+                        if k.lower() == 'time':
+                            try:
+                                fv = float(v)
+                                # adaptive units: seconds, milliseconds, microseconds
+                                if fv >= 1.0:
+                                    val = f"{fv:.3f}s"
+                                elif fv >= 0.001:
+                                    val = f"{fv*1000:.3f}ms"
+                                elif fv >= 0.000001:
+                                    val = f"{fv*1000000:.3f}µs"
+                                else:
+                                    # extremely small: show full precision in seconds
+                                    val = f"{fv:.9f}s"
+                            except Exception:
+                                val = str(v)
+                        elif isinstance(v, float):
+                            # other floats: 3 decimal places
+                            val = f"{v:.3f}"
+                        else:
+                            val = str(v)
                     print(f"  {k}: {val}")
 
         print("=-------------------------------------------=")

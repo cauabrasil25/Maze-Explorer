@@ -11,7 +11,7 @@ from src.algorithms.Bfs import Bfs
 from src.algorithms.Dfs import Dfs
 from src.algorithms.A import A
 from src.algorithms.Hillclimbing import Hillclimbing
-#from src.algorithms.Minimax import Minimax
+from src.algorithms.Minimax import Minimax
 
 
 
@@ -184,7 +184,9 @@ class Controller:
                         self.path, metrics = a.astar_search(self.maze)
                         self.player.set_metrics('A*', **metrics)
                     case 'Minimax':
-                        self.player.set_score(self.player.get_score('Minimax') + 10, 'Minimax')
+                        minimax = Minimax()
+                        self.path, metrics = minimax.minimax_search(self.maze)
+                        self.player.set_metrics('Minimax', **metrics)
                     case 'Hillclimbing':
                         hill = Hillclimbing()
                         self.path, metrics = hill.search(self.maze)
