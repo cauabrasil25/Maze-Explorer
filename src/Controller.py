@@ -8,7 +8,7 @@ from src.Player import Player
 from src.Input import Input
 from src.Maze import Maze
 from src.algorithms.Bfs import Bfs
-#from src.algorithms.Dfs import Dfs
+from src.algorithms.Dfs import Dfs
 #from src.algorithms.A import A
 #from src.algorithms.Minimax import Minimax
 
@@ -175,7 +175,9 @@ class Controller:
                         self.path, metrics = bfs.bfs_search(self.maze)
                         self.player.set_metrics('BFS', **metrics)
                     case 'DFS':
-                        self.player.set_score(self.player.get_score('DFS') + 10, 'DFS')
+                        dfs = Dfs()
+                        self.path, metrics = dfs.dfs_search(self.maze)
+                        self.player.set_metrics('DFS', **metrics)
                     case 'A*':
                         self.player.set_score(self.player.get_score('A*') + 10, 'A*')
                     case 'Minimax':

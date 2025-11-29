@@ -9,7 +9,8 @@ def main():
         controller.handle_display()
         controller.handle_input()
         controller.update()
-
+    # final display update using Controller's display handler
+    controller.handle_display()
 
 if __name__ == '__main__':
     try:
