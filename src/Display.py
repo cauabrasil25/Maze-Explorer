@@ -77,3 +77,41 @@ class Display:
         print("===========================================")
         print("         Thank you for playing!            ")
         print("===========================================")    
+
+    def showGameScreen(path, maze=None):
+        """Show final trajectory of the player.
+
+        Args:
+            path: list of (x,y) positions returned by the pathfinder.
+            maze: optional Maze instance (to draw ASCII map with path).
+        """
+        print("=---------------- Game Path ----------------=")
+        if not path:
+            print("No path found.")
+            print("=-------------------------------------------=")
+            return
+
+        steps = max(0, len(path)-1)
+        print(f"Steps: {steps} | Path length: {len(path)}")
+        # print coordinates
+        for i, (x, y) in enumerate(path):
+            tag = 'Start' if i == 0 else ('End' if i == len(path)-1 else f'Step{i}')
+            print(f"{tag}: ({x}, {y})")
+
+        # if maze provided, draw ASCII map with path marked
+        if maze is not None and getattr(maze, 'grid', None) is not None:
+            print('\nMap with path ("*" marks path):')
+            # copy grid (rows are lists)
+            grid = [list(row) for row in maze.grid]
+            for i, (x, y) in enumerate(path):
+                if 0 <= y < len(grid) and 0 <= x < len(grid[0]):
+                    if i == 0:
+                        grid[y][x] = 'P'
+                    elif i == len(path)-1:
+                        grid[y][x] = 'E'
+                    else:
+                        grid[y][x] = '*'
+            for row in grid:
+                print(''.join(row))
+
+        print("=-------------------------------------------=")
