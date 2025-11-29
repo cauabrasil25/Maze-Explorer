@@ -10,6 +10,7 @@ from src.Maze import Maze
 from src.algorithms.Bfs import Bfs
 from src.algorithms.Dfs import Dfs
 from src.algorithms.A import A
+from src.algorithms.Hillclimbing import Hillclimbing
 #from src.algorithms.Minimax import Minimax
 
 
@@ -185,7 +186,9 @@ class Controller:
                     case 'Minimax':
                         self.player.set_score(self.player.get_score('Minimax') + 10, 'Minimax')
                     case 'Hillclimbing':
-                        self.player.set_score(self.player.get_score('Hillclimbing') + 10, 'Hillclimbing')
+                        hill = Hillclimbing()
+                        self.path, metrics = hill.search(self.maze)
+                        self.player.set_metrics('Hillclimbing', **metrics)
                 self.setState(State.MAIN_MENU)
                 self.clear_screen()
             case State.VIEW_SCORES:
