@@ -1,3 +1,7 @@
+import time
+import os
+
+
 class Display:
     """Print menus and player info to console."""
     # Dispatcher moved to Controller. Keep display helpers below.
@@ -78,12 +82,17 @@ class Display:
         print("         Thank you for playing!            ")
         print("===========================================")    
 
-    def showGameScreen(path, maze=None):
+    def showGameScreen(path, maze=None, animate=True, delay=1.0):
         """Show final trajectory of the player.
+
+        If `animate=True`, show step-by-step progression with a delay
+        between frames. `delay` controls seconds between frames.
 
         Args:
             path: list of (x,y) positions returned by the pathfinder.
             maze: optional Maze instance (to draw ASCII map with path).
+            animate: whether to print the path step-by-step.
+            delay: seconds to wait between steps when animating.
         """
         print("=---------------- Game Path ----------------=")
         if not path:
@@ -91,27 +100,55 @@ class Display:
             print("=-------------------------------------------=")
             return
 
-        steps = max(0, len(path)-1)
+        steps = max(0, len(path) - 1)
         print(f"Steps: {steps} | Path length: {len(path)}")
-        # print coordinates
-        for i, (x, y) in enumerate(path):
-            tag = 'Start' if i == 0 else ('End' if i == len(path)-1 else f'Step{i}')
-            print(f"{tag}: ({x}, {y})")
 
-        # if maze provided, draw ASCII map with path marked
-        if maze is not None and getattr(maze, 'grid', None) is not None:
-            print('\nMap with path ("*" marks path):')
-            # copy grid (rows are lists)
+        # helper to render map with current player position and optional trail
+        def render_at(pos_index):
+            # if no maze grid, just print coords
+            if maze is None or getattr(maze, 'grid', None) is None:
+                cur = path[pos_index]
+                print(f"Player at: {cur} (step {pos_index}/{len(path)-1})")
+                return
+
             grid = [list(row) for row in maze.grid]
+            # mark trail with '*' except start/end
             for i, (x, y) in enumerate(path):
                 if 0 <= y < len(grid) and 0 <= x < len(grid[0]):
                     if i == 0:
                         grid[y][x] = 'P'
-                    elif i == len(path)-1:
+                    elif i == len(path) - 1:
                         grid[y][x] = 'E'
                     else:
                         grid[y][x] = '*'
+            # override current position with 'P' to show movement
+            cx, cy = path[pos_index]
+            if 0 <= cy < len(grid) and 0 <= cx < len(grid[0]):
+                grid[cy][cx] = 'P'
+
             for row in grid:
                 print(''.join(row))
+
+        if animate:
+            for i in range(len(path)):
+                # clear terminal
+                try:
+                    os.system('cls' if os.name == 'nt' else 'clear')
+                except Exception:
+                    print('\033c', end='')
+                print(f"Step {i}/{len(path)-1}")
+                render_at(i)
+                time.sleep(delay)
+            # final frame summary
+            print('\nFinal path:')
+            render_at(len(path) - 1)
+        else:
+            # non-animated: print coordinates and map with path
+            for i, (x, y) in enumerate(path):
+                tag = 'Start' if i == 0 else ('End' if i == len(path) - 1 else f'Step{i}')
+                print(f"{tag}: ({x}, {y})")
+            if maze is not None and getattr(maze, 'grid', None) is not None:
+                print('\nMap with path ("*" marks path):')
+                render_at(len(path) - 1)
 
         print("=-------------------------------------------=")
