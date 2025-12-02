@@ -49,7 +49,7 @@ python -m src.Main
   * `presentation/` Apresentação e slide do Pitch.
 
 ## Resultados e Demonstração
-<img width="369" height="167" alt="image" src="https://github.com/user-attachments/assets/634c6d41-4c03-460a-a4e1-fcad94edb4c1" />
+<img width="369" height="167" alt="image" src="https://github.com/user-attachments/assets/634c6d41-4c03-460a-a4e1-fcad94edb4c1" /> <br>
 
 <img width="368" height="127" alt="image" src="https://github.com/user-attachments/assets/83b6a0c5-4f2b-4e2a-a61b-2ba44ea12ef9" />
 
