@@ -8,7 +8,7 @@
 ## Integrantes do Grupo
 * Cauã Rodrigues Brasil (20230048138)
 * Gislayne Ellen Da Silva Soares (20230042850)
-* Maria Vitoria Bruna Guedes Fernandes (20230069503)
+* Maria Vitoria Bruna Guedes Fernandes (20230069503) oi
 
 ## Descrição do Projeto
 Este projeto foi desenvolvido para matéria de Introdução à Inteligência Artificial, com o objetivo de criar um explorador de labirintos que utilize diferentes técnicas de busca e agentes lógicos para demonstrar suas estratégias e desempenho.
