@@ -49,6 +49,10 @@ python -m src.Main
   * `presentation/` Apresentação e slide do Pitch.
 
 ## Resultados e Demonstração
+<img width="369" height="167" alt="image" src="https://github.com/user-attachments/assets/634c6d41-4c03-460a-a4e1-fcad94edb4c1" />
+
+<img width="368" height="127" alt="image" src="https://github.com/user-attachments/assets/83b6a0c5-4f2b-4e2a-a61b-2ba44ea12ef9" />
+
 <img width="343" height="332" alt="image" src="https://github.com/user-attachments/assets/6f2bfdc1-fc81-41a0-92ea-cea13e1781f6" />
 
 [Adicione prints da aplicação em execução ou gráficos com os resultados do modelo/agente. Se for uma aplicação Web, coloque um print da interface.]
