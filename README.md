@@ -55,7 +55,6 @@ python -m src.Main
 <hr>
 <img width="343" height="332" alt="image" src="https://github.com/user-attachments/assets/6f2bfdc1-fc81-41a0-92ea-cea13e1781f6" />
 
-[Adicione prints da aplicação em execução ou gráficos com os resultados do modelo/agente. Se for uma aplicação Web, coloque um print da interface.]
 
 ## Referências
 
