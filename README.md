@@ -59,6 +59,10 @@ A aplicação é executada totalmente via terminal e inicia com um menu principa
 <hr>
 <img width="343" height="332" alt="image" src="https://github.com/user-attachments/assets/6f2bfdc1-fc81-41a0-92ea-cea13e1781f6" />
 
+Assista ao vídeo para ver o agente Maze Explorer executando os algoritmos de busca passo a passo no terminal.
+
+[▶️ Ver Demonstração (Link do seu Vídeo)](https://vimeo.com/1142665849?share=copy&fl=sv&fe=ci)
+
 
 ## Referências
 
