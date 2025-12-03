@@ -1,5 +1,4 @@
-#0k,
-,Maze Explorer
+## Maze Explorer
 
 **Disciplina:** Introdução à Inteligência Artificial  
 **Semestre:** 2025.2  
