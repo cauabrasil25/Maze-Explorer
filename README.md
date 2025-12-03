@@ -51,10 +51,11 @@ python -m src.Main
 
 ## Resultados e Demonstração
 
+A aplicação é executada totalmente via terminal e inicia com um menu principal que permite configurar e iniciar o labirinto. Temos a interface de terminal do **Maze Explorer** demonstrando o **Menu Principal** (opções `Start Maze Game`, `View Scores`, `Set Algorithm`, `Exit`) e o submenu **Select Algorithm**. Este submenu permite a escolha do método de busca ativo, como BFS, DFS, $A^{*}$, Minimax ou Hillclimbing. É possível visualizar a tabela de métricas de desempenho para cada um dos cinco algoritmos testados.
+
 <img width="369" height="167" alt="image" src="https://github.com/user-attachments/assets/634c6d41-4c03-460a-a4e1-fcad94edb4c1" />
 <hr>
 <img width="368" height="127" alt="image" src="https://github.com/user-attachments/assets/83b6a0c5-4f2b-4e2a-a61b-2ba44ea12ef9" />
-**Legenda:** Interface de terminal do **Maze Explorer** demonstrando o **Menu Principal** (opções `Start Maze Game`, `View Scores`, `Set Algorithm`, `Exit`) e o submenu **Select Algorithm**. Este submenu permite a escolha do método de busca ativo, como BFS, DFS, $A^{*}$, Minimax ou Hillclimbing.
 <hr>
 <img width="343" height="332" alt="image" src="https://github.com/user-attachments/assets/6f2bfdc1-fc81-41a0-92ea-cea13e1781f6" />
 
